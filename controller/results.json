@@ -42,5 +42,28 @@
       " worldhello",
       "12"
     ]
+  },
+  {
+    "inputs": [
+      "12",
+      " hello",
+      " world",
+      " 10.75",
+      " 3",
+      " world",
+      " 3.25",
+      " end"
+    ],
+    "mode": "FPGA",
+    "result": [
+      " 10.75",
+      " world",
+      " hello",
+      "12",
+      " end",
+      " 3.25",
+      " world",
+      " 3"
+    ]
   }
 ]
