@@ -3,7 +3,7 @@ hello
 
 # IMG
 
-Requirement
+Requirements
 <img width="999" alt="image" src="https://github.com/zergreen/mvc-compiler-2023/assets/68957232/b7bc90e6-c09b-4092-a7cc-6812c010452a">
 
 Homepage
