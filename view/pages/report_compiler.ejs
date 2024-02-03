@@ -1,0 +1,55 @@
+<%-include('../partials/header.ejs')%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Data Table</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        /* Apply the white-space property to preserve line breaks */
+        td.output-syntax {
+            white-space: pre-line;
+        }
+
+        .fixed-box {
+            width: 1000px; /* Set the desired width for your box */
+            height: 600px; /* Set the desired height for your box */
+            border: 1px solid #ccc;
+            overflow: auto; /* Add scrollbars when content overflows */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center><h1>REPORT</h1></center>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="fixed-box">
+
+        <table class="table table-bordered table-striped mb-0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Source Code</th>
+                <th>Output Syntax</th>
+                <th>Model</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let count = 1 %>
+            <% response.forEach(function(item) { %>
+                <tr>
+                    <td><%= count++ %></td>
+                    <td class="output-syntax"><%= item.src_code %></td>
+                    <td class="output-syntax"><%= item.output_syntax %></td>
+                    <td ><%= item.model_type %></td>
+                    <!-- <td ><button class="btn btn-warning"><a href='/deleteData/<%= item.id %>'>EDIT</a></button></td> -->
+                    <td ><button class="btn btn-danger"><a href='/deleteData/<%= item.id %>'>DEL</a></button></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+   </div>
+</body>
+</html>
