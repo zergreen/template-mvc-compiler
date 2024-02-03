@@ -1,26 +1,51 @@
--- [0] begin script : prepare data
-DROP DATABASE Phongsakorn_mvc;
-CREATE DATABASE Phongsakorn_mvc;
+-- SQL Script to set up the boardgame_booking database
 
-DROP TABLE Compiler ;
+-- Drop tables if they already exist (to avoid errors on rerun)
+DROP TABLE IF EXISTS rooms;
+DROP TABLE IF EXISTS games;
 
-CREATE TABLE Compiler (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
- 	src_code TEXT,
- 	output_syntax TEXT,
- 	model_type varchar(255)
- 	);
+-- Creates a table for rooms
+CREATE TABLE rooms (
+    roomId TEXT PRIMARY KEY,
+    roomName TEXT NOT NULL,
+    status TEXT NOT NULL CHECK(status IN ('available', 'reserved')), -- Ensures status is either 'available' or 'reserved'
+    reservedBy TEXT -- Name of the person who reserved the room, NULL if no reservation
+);
 
-INSERT INTO Compiler(id, src_code, output_syntax, model_type)
-VALUES
-(NULL, 'x = 10 + 2','huh?','Model1'),
-(NULL, 'declare xy','huh!','Model2'),
-(NULL, 'xy = x + 10','hmm...','Model1');
+-- Creates a table for games
+CREATE TABLE games (
+    gameId TEXT PRIMARY KEY,
+    gameName TEXT NOT NULL,
+    roomId TEXT, -- ID of the room the game is assigned to, NULL if not assigned
+    status TEXT NOT NULL CHECK(status IN ('available', 'reserved')), -- Ensures status is either 'available' or 'reserved'
+    FOREIGN KEY(roomId) REFERENCES rooms(roomId) -- Ensures that gameId references an existing roomId
+);
 
-SELECT * FROM Compiler;
+-- Sample Data Insertion
+-- Inserting rooms
+INSERT INTO rooms (roomId, roomName, status) VALUES 
+('A1', 'Room A1', 'available'),
+('A2', 'Room A2', 'available'),
+('A3', 'Room A3', 'available'),
+('A4', 'Room A4', 'available'),
+('A5', 'Room A5', 'available');
 
--- [1] end prepare data
+-- Inserting games
+INSERT INTO games (gameId, gameName, roomId, status) VALUES 
+('G1', 'Chess', NULL, 'available'),
+('G2', 'Monopoly', NULL, 'available'),
+('G3', 'Catan', NULL, 'available'),
+('G4', 'Ticket to Ride', NULL, 'available'),
+('G5', 'Pandemic', NULL, 'available');
 
-SELECT * FROM Compiler WHERE id = 1;
-DELETE FROM Compiler WHERE id = 1;
+CREATE TABLE IF NOT EXISTS reservations (
+    reservationId INTEGER PRIMARY KEY AUTOINCREMENT,
+    roomId TEXT NOT NULL,
+    gameId TEXT NOT NULL,
+    reservedBy TEXT NOT NULL,
+    reservationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (roomId) REFERENCES rooms(roomId),
+    FOREIGN KEY (gameId) REFERENCES games(gameId)
+);
+
 

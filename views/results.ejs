@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Array Processor Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .error {
+      color: #a94442;
+      margin-top: 20px;
+    }
+
+    .back-link {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #ddd;
+      color: #333;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .back-link:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <% if (data && data.length) { %>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Inputs</th>
+        <th>Mode</th>
+        <th>Result</th>
+      </tr>
+      <% data.forEach((entry, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= entry.inputs.join(', ') %></td>
+          <td><%= entry.mode %></td>
+          <td><%= entry.result.join(', ') %></td>
+          <td>
+            <form action="/delete-index/<%= index %>" method="post">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit">Delete <%= index + 1 %></button>
+          </form>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  <% } %>
+  
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+
+  <a href="/" class="back-link">Go back to form</a>
+</body>
+</html>

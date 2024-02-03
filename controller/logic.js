@@ -82,6 +82,29 @@ class Logic {
   //   });
   //   new Operator().editDataOperator(compiler, res);
   // };
+
+  // mvc
+
+  getRoomLogic = (res) => {
+    new Operator().getRoomOperator(res);
+  };
+
+  reserveRoomLogic = (rooms, res) => {
+    new Operator().reserveRoomOperator(rooms, res);
+  };
+
+  getGameLogic = (res) => {
+    new Operator().getGameOperator(res);
+  };
+
+  reserveGameLogic = (games, res) => {
+    // console.log(games.gameId, games.reservedBy);
+    new Operator().reserveGameOperator(games, res);
+  };
+
+  cancelReservationLogic = (rooms, res) => {
+    new Operator().cancelReservationOperator(rooms, res);
+  }
 }
 
 module.exports = {

@@ -3,6 +3,8 @@ const model = require("../model/model");
 class Endpoint {
   constructor() {
     this.compiler = model.compiler;
+    this.rooms = model.rooms;
+    this.games = model.games;
   }
 
   addDataEndpoint = (req, res) => {
@@ -25,12 +27,33 @@ class Endpoint {
     new Logic().reportLogic(res);
   };
 
-//   editDataEndpoint = (req, res) => {
-//     this.compiler.id = req.body.id;
-//     this.compiler.src_code = req.body.src_code;
-//     this.compiler.output_syntax = req.body.output_syntax;
-//     new Logic().editDataEndpointLogic(this.compiler, res);
-//   };
+  // mvc
+
+  getRoomEndpoint = (req, res) => {
+    new Logic().getRoomLogic(res);
+  };
+
+  reserveRoomEndpoint = (req, res) => {
+    this.rooms.roomId = req.body.roomId;
+    this.rooms.reservedBy = req.body.reservedBy;
+    new Logic().reserveRoomLogic(this.rooms, res);
+  };
+
+  getGameEndpoint = (req, res) => {
+    new Logic().getGameLogic(res);
+  };
+
+  reserveGameEndpoint = (req, res) => {
+    this.rooms.gameId = req.body.gameId;
+    this.rooms.reservedBy = req.body.reservedBy;
+    new Logic().reserveGameLogic(this.rooms, res);
+  };
+
+  cancelReservationEndpoint = (req, res) => {
+    this.rooms.roomId = req.body.roomId;
+    new Logic().cancelReservationLogic(this.rooms, res);
+  }
+
 }
 
 module.exports = {
