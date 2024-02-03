@@ -4,14 +4,11 @@ const server = express();
 const routes = require("./routes/router");
 const cors = require('cors');
 const helmet = require('helmet');
-// const path = require('path');
-// const fs = require('fs');
 const bodyParser = require('body-parser');
 
 const port = process.env.PORT || 3000
 
 server.set('view engine', 'ejs');
-// server.set('views', path.join(__dirname, 'view'))
 
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }));
