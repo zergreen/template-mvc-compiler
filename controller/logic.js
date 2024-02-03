@@ -11,10 +11,10 @@ class Logic {
           result = arrayFunctions.sumAdjacentNumbers(arrays.inputs.split(","));
           break;
         case "GPU":
-          result = arrayFunctions.reverseHalves(arrays.inputs.split(","));
+          result = arrayFunctions.concatenateNonNumbers(arrays.inputs.split(","));
           break;
         case "FPGA":
-          result = arrayFunctions.concatenateNonNumbers(arrays.inputs.split(","));
+          result = arrayFunctions.reverseHalves(arrays.inputs.split(","));
           break;
         default:
           throw new Error("Invalid mode");
