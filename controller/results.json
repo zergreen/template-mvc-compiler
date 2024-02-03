@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "inputs": [
+      "12",
+      " hello",
+      " world",
+      " 10.75",
+      " 3",
+      " world",
+      " 3.25",
+      " end"
+    ],
+    "mode": "CPU",
+    "result": [
+      "12",
+      " hello",
+      " world",
+      "13.75",
+      " world",
+      " 3.25",
+      " end"
+    ]
+  },
+  {
+    "inputs": [
+      "12",
+      " hoho",
+      " hah",
+      " 10.75",
+      " 3",
+      " world",
+      " 3.25",
+      " end"
+    ],
+    "mode": "GPU",
+    "result": [
+      " 10.75",
+      " hah",
+      " hoho",
+      "12",
+      " end",
+      " 3.25",
+      " world",
+      " 3"
+    ]
+  }
+]
