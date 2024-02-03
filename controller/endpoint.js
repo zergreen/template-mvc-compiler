@@ -54,6 +54,18 @@ class Endpoint {
     new Logic().cancelReservationLogic(this.rooms, res);
   }
 
+  arrayProcessEndpoint = (req, res) => {
+    new Logic().arrayProcessLogic(req, res);
+  }
+
+  arrayResultEndpoint = (req, res) => {
+    new Logic().arrayResultLogic(req, res);
+  }
+
+  arrayDeleteIndexEndpoint = (req, res) => {
+    new Logic().arrayDeleteIndexLogic(req, res);
+  }
+
 }
 
 module.exports = {

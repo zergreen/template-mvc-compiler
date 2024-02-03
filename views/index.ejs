@@ -85,12 +85,14 @@
   <div>
     <label for="mode">Mode:</label>
     <select id="mode" name="mode">
-      <option value="sum">SUM</option>
-      <option value="reverse">REVERSE</option>
-      <option value="concatenate">CONCATENATE</option>
+      <option value="CPU">CPU</option>
+      <option value="GPU">GPU</option>
+      <option value="FPGA">FPGA</option>
     </select>
   </div>
   <button type="submit">Process</button>
+  <button><a href="/results">Result</a></button>
+  
 </form>
 
 <% if (result) { %>

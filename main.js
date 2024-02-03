@@ -1,4 +1,5 @@
 function sumAdjacentNumbers(stringArray) {
+    
     let i = 0;
     while (i < stringArray.length - 1) {
         let currentNum = parseFloat(stringArray[i]);
@@ -10,6 +11,9 @@ function sumAdjacentNumbers(stringArray) {
             i++;
         }
     }
+
+    console.log(444);
+    console.log(stringArray);
     return stringArray;
 }
 

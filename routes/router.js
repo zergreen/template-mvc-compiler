@@ -16,8 +16,17 @@ router.get("/games", new Endpoint().getGameEndpoint);
 router.post("/reserveGame", new Endpoint().reserveGameEndpoint);
 router.post("/cancelReservation", new Endpoint().cancelReservationEndpoint);
 
+// router.get('/', (req, res) => {
+//     return res.render('../view/pages/home.ejs')
+// })
+
 router.get('/', (req, res) => {
-    return res.render('../view/pages/home.ejs')
-})
+    res.render('index', { result: null, error: null }); // Render the EJS template with no initial data
+  });
+
+router.post('/', new Endpoint().arrayProcessEndpoint);
+router.get('/results', new Endpoint().arrayResultEndpoint);
+
+router.post('/delete-index/:index', new Endpoint().arrayDeleteIndexEndpoint);
 
 module.exports = router;
